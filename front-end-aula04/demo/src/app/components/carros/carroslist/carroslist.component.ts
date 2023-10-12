@@ -74,6 +74,20 @@ import { CarrosService } from 'src/app/services/carros/carros.service';
       this.modalService.dismissAll();
   
     }
+    excluirCarro(carro: Carro) {
+      if (confirm(`Tem certeza de que deseja excluir ${carro.modelo}?`)) {
+        this.carroService.deletar(carro.id).subscribe({
+          next: () => {
+            this.listAll(); // Atualize a lista após a exclusão
+            alert('Pessoa excluída com sucesso!');
+          },
+          error: (erro) => {
+            alert('Ocorreu um erro ao excluir a pessoa.');
+            console.error(erro);
+          }
+        });
+      }
+    }
   
   
 

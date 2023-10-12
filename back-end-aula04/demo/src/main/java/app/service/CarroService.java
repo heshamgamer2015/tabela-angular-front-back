@@ -47,5 +47,9 @@ public class CarroService {
         carro.setAno(carroDTO.getAno());
         return carro;
     }
+    public void deletar(Long id) {
+        carroRepository.deleteById(id);
+    }
+
 
 }

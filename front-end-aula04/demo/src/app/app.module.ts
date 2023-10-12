@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +16,9 @@ import { CarroslistComponent } from './components/carros/carroslist/carroslist.c
 import { CarrodetailsComponent } from './components/carros/carrosdetails/carrodetalis.component';
 import { PessoaService } from './services/pessoas/pessoa.service';
 import { CarrosService } from './services/carros/carros.service';
-
+import { LivroService } from './services/livros/livro.service';
+import { LivroslistComponent } from './components/livros/livroslist/livroslist.component';
+import { LivrosdetailsComponent } from './components/livros/livrosdetalis/livrosdetalis.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { CarrosService } from './services/carros/carros.service';
     HeaderComponent,
     FooterComponent,
     IndexComponent,
-    LoginComponent
+    LoginComponent,
+    LivroslistComponent,
+    LivrosdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import { CarrosService } from './services/carros/carros.service';
   ],
   providers: [
     PessoaService,
-    CarrosService
+    CarrosService,
+    LivroService
   ],
   bootstrap: [AppComponent]
 })

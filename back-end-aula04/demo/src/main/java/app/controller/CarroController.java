@@ -42,6 +42,12 @@ public class CarroController {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id) {
+        carroService.deletar(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
 
 

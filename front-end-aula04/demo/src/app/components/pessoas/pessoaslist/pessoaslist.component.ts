@@ -85,5 +85,20 @@ export class PessoaslistComponent {
     this.modalService.dismissAll();
 
   }
+  excluirPessoa(pessoa: Pessoa) {
+    if (confirm(`Tem certeza de que deseja excluir ${pessoa.nome}?`)) {
+      this.pessoaService.deletar(pessoa.id).subscribe({
+        next: () => {
+          this.listAll(); // Atualize a lista após a exclusão
+          alert('Pessoa excluída com sucesso!');
+        },
+        error: (erro) => {
+          alert('Ocorreu um erro ao excluir a pessoa.');
+          console.error(erro);
+        }
+      });
+    }
+  }
+
 
 }

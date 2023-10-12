@@ -25,5 +25,9 @@ export class CarrosService {
       return this.http.get<Carro[]>(this.API + '/erro');
     }
 
+    deletar(id: number): Observable<any> {
+      return this.http.delete(this.API + "/" + `${id}`);
+    }
+  
   //istAll(): Observable<Carro[]>
 }

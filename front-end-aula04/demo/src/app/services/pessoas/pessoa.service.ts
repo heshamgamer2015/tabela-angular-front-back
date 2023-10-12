@@ -26,6 +26,9 @@ export class PessoaService {
     return this.http.get<Pessoa[]>(this.API + '/erro');
   }
 
+  deletar(id: number): Observable<any> {
+    return this.http.delete(this.API + "/" + `${id}`);
+  }
 
 
   /*

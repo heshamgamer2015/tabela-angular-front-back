@@ -1,9 +1,7 @@
 package app.service;
 
 
-import app.dto.CarroDTO;
 import app.dto.LivroDTO;
-import app.entity.Carro;
 import app.entity.Livro;
 import app.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +13,39 @@ import java.util.List;
 @Service
 public class LivroService {
 
-    @Autowired
+  @Autowired
     private LivroRepository livroRepository;
 
-    public List<LivroDTO> listAll(){
-        List<Livro> lista = livroRepository.findAll();
-        List<LivroDTO> listaDTO = new ArrayList<>();
+  public  List<LivroDTO>listAll(){
+      List<Livro> lista = livroRepository.findAll();
+      List<LivroDTO> listaDTO = new ArrayList<>();
 
-        for (int i=0; i<lista.size(); i++)
-            listaDTO.add(this.tolivroDTO(lista.get(i)));
-        return listaDTO;
+      for (int i=0; i<lista.size(); i++)
+          listaDTO.add(this.toLivroDTO(lista.get(i)));
+      return listaDTO;
+  }
+  public LivroDTO save (LivroDTO livroDTO){
+      Livro livro = this.toLivro(livroDTO);
 
+      Livro livrosalva = livroRepository.save(livro);
+      return this.toLivroDTO(livrosalva);
+  }
+  private LivroDTO toLivroDTO( Livro livro){
+      LivroDTO livroDTO = new LivroDTO();
+      livroDTO.setId(livro.getId());
+      livroDTO.setAutor(livro.getAutor());
+      livroDTO.setTitulo(livro.getTitulo());
+      return livroDTO;
+  }
+  private Livro toLivro(LivroDTO livroDTO){
+      Livro livro = new Livro();
+      livro.setId(livroDTO.getId());
+      livro.setAutor(livroDTO.getAutor());
+      livro.setTitulo(livroDTO.getTitulo());
+      return livro;
+  }
+    public void deletar(Long id) {
+        livroRepository.deleteById(id);
     }
-
 
 }
